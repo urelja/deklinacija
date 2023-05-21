@@ -176,7 +176,7 @@ def lokativ(name, gender, latin=True):
     return dativ(name, gender, latin)
 
 
-def all(name, gender, latin=True):
+def declineAll(name, gender, latin=True):
     utils.check(name, gender, latin)
     name = name.strip()
 

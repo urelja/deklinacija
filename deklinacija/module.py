@@ -155,7 +155,7 @@ def instrumental(name, gender, latin=True):
 
         nameGenitiv.pop(-1)
 
-        if gender.lower() == "male" and utils.toCyrillic(name)[-1] in PREDNJONEPCANI:
+        if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1] in PREDNJONEPCANI:
             if lastChar.isupper():
                 nameGenitiv.append("EM")
                 return "".join(nameGenitiv)

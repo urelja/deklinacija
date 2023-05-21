@@ -1,2 +1,2 @@
-from deklinacija.module import genitiv, dativ, akuzativ, instrumental, lokativ, all
+from deklinacija.module import genitiv, dativ, akuzativ, instrumental, lokativ, declineAll
 from deklinacija.utils import toCyrillic

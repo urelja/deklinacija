@@ -1,5 +1,5 @@
 # deklinacija-imena
-A Python library for declension of personal names in Serbian, Croatian and Bosnian.
+A Python library for declension of personal names in Serbian. The  grammatical rules utlized in this library likely also apply to Croatian and Bosnian.
 
 ## Usage
 Simply `import` the package. It is recommended to set the alias to `dek`.
@@ -7,7 +7,7 @@ Simply `import` the package. It is recommended to set the alias to `dek`.
 ```python
 import deklinacija as dek
 ```
-**As of right now, only first names are supported.** To decline names, all you have to do is to call the appropriate function for the grammatical case you want to use, and specify the `name` and the `gender` parameter. There is also the third `latin` parameter, which indicates whether the provided `name` parameter is written in Cyrillic or Latin script. **Currently, only Latin script is supported.**
+**As of right now, only first names are supported.** To decline names, all you have to do is to call the appropriate function for the grammatical case you want to use, and specify the `name` and the `gender` parameter. There is also the third `latin` parameter, which indicates whether the provided `name` parameter is written in the Cyrillic or Latin script. **Currently, only the Latin script is supported.**
 
 The functions in this example return a `string`.
 ```python

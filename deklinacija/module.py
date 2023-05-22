@@ -3,9 +3,9 @@ import deklinacija.utils as utils
 VOWELS = ["a", "а", "e", "е", "i", "и", "o", "о",
           "u", "у"]  # used for identifying consonants
 
-NEP_A_EXCEPT = ["an", "av", "al", "aš", "ag", "af", "ač"] # words ending with these letters aren't prone to the nepostojano a sound change, the majority of names end like this
+NEP_A = ["ар","ај","ађ"] # words ending with these letters aren't prone to the nepostojano a sound change, the majority of names end like this
 
-PREDNJONEPCANI = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж", "и"] # used for instrumental, letter и added only because of the letter "J" which is added inbetween "i" and "a", like in names "Miki" - "od MikiJa"
+INSTRUMENTAL_LETTERS = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
 SOUND_CHANGE = {"k": "č", "g": "ž", "h": "š", }
 
 
@@ -71,7 +71,10 @@ def genitiv(name, gender, latin=True):
                 if len(name) >= 4:
                     if secToLastChar in ["a", "A"]:
                         # od Stefana, od Miroslava, od Miodraga...
-                        if (secToLastChar.lower() + lastChar.lower()) in NEP_A_EXCEPT:
+                        
+                        lastTwo = name[-2]+name[-1]
+
+                        if utils.toCyrillic(lastTwo) not in NEP_A:
                             if lastChar.isupper():
                                 name.append("A")
                             else:
@@ -143,10 +146,11 @@ def akuzativ(name, gender, latin=True):
 def instrumental(name, gender, latin=True):
     utils.check(name, gender, latin)
     name = name.strip()
-    nameGenitiv = list(genitiv(name, gender, latin))
-    name = list(name)
+    
     lastChar = name[-1]
     secToLastChar = name[-2]
+    nameGenitiv = utils.separateLetters(genitiv(name, gender, latin))
+    name = list(name)
 
     if latin == True:
         if gender.lower() == "female":
@@ -155,7 +159,15 @@ def instrumental(name, gender, latin=True):
 
         nameGenitiv.pop(-1)
 
-        if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1] in PREDNJONEPCANI:
+        if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1] in INSTRUMENTAL_LETTERS:
+            if nameGenitiv[-2].lower() == "e":
+                if lastChar.isupper():
+                    nameGenitiv.append("OM")
+                    return "".join(nameGenitiv)
+                else:
+                    nameGenitiv.append("om")
+                    return "".join(nameGenitiv)
+
             if lastChar.isupper():
                 nameGenitiv.append("EM")
                 return "".join(nameGenitiv)

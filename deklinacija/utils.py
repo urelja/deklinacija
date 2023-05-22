@@ -3,6 +3,11 @@ alphabet = {
     'h': 'х', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'lj': 'љ', 'm': 'м', 'n': 'н', 'nj': 'њ', 'o': 'о',
     'p': 'п', 'r': 'р', 's': 'с', 'š': 'ш', 't': 'т', 'u': 'у', 'v': 'в', 'z': 'з', 'ž': 'ж', 'dž': 'џ', 'dz': 'џ'}
 
+alphabet_latin = {
+    'а': 'a', 'б': 'b', 'ц': 'c', 'ч': 'č', 'ћ': 'ć', 'д': 'd', 'ђ': 'đ', 'е': 'e', 'ф': 'f', 'г': 'g',
+    'х': 'h', 'и': 'i', 'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm', 'н': 'n', 'њ': 'nj', 'о': 'o',
+    'п': 'p', 'р': 'r', 'с': 's', 'ш': 'š', 'т': 't', 'у': 'u', 'в': 'v', 'з': 'z', 'ж': 'ž', 'џ': 'dž'}
+
 latExceptions = []
 
 def toCyrillic(word):
@@ -59,6 +64,26 @@ def toCyrillic(word):
 
     return word
 
+def toLatin(word):
+    word = list(word)
+
+    n = 0
+    for i in word:
+        if i.lower() in alphabet_latin:
+            if i[0].isupper() and i.lower() in ['љ','њ','џ']:
+                letter = alphabet_latin[i.lower()][0].upper() + alphabet_latin[i.lower()][1]
+                word[n] = letter
+            elif i[0].isupper():
+                word[n] = alphabet_latin[i.lower()].upper()
+            else:
+                word[n] = alphabet_latin[i]
+
+        else:
+            word[n] = i
+        n += 1
+    
+    return "".join(word)
+
 def check(name,gender,latin):
     if type(name) != str or type(name) != str or type(gender) != str or type(latin) != bool:
         raise TypeError("name and gender params must be a string, param latin must be a boolean")
@@ -71,4 +96,31 @@ def check(name,gender,latin):
 
     if len(name) < 3:
         raise ValueError("name param must be at least 3 characters long")
+    
+def separateLetters(word):
+    word = list(word)
+    wordText = "".join(word)
+    wordArray = []
+    
+
+    n = 0
+    while n <= (len(word)-1):
+
+        if n == len(word)-1:
+            wordArray.append(word[n])
+            break
+
+        if word[n] in ["d", "D", "l", "L", "n", "N"] and word[n+1] in ["j", "J"]:
+            wordArray.append(word[n]+word[n+1])
+            word.pop(n+1)
+            n += 1
+        elif word[n] in ["d", "D"] and word[n+1] in ["ž", "Ž", "z", "Z"]:
+            wordArray.append(word[n]+word[n+1])
+            word.pop(n+1)
+            n += 1
+        else:
+            wordArray.append(word[n])
+            n += 1
+    
+    return wordArray
     

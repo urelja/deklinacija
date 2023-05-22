@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/urelja/deklinacija-imena"
-"Bug Tracker" = "https://github.com/urelja/deklinacija-imena/issues"
+"Homepage" = "https://github.com/urelja/deklinacija"
+"Bug Tracker" = "https://github.com/urelja/deklinacija/issues"

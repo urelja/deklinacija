@@ -1,6 +1,13 @@
-# deklinacija-imena
-A Python library for declension of personal names in Serbian. The  grammatical rules utlized in this library likely also apply to Croatian and Bosnian.
+# deklinacija
+A Python library for declension of personal names in Serbian. The  grammatical rules utlized in this library also apply to Croatian and Bosnian.
 
+## Installation
+The source code is currently hosted on GitHub: [https://github.com/urelja/deklinacija](https://github.com/urelja/deklinacija)
+
+The latest binary versions are hosted on the Python Package Index (PyPI).
+```properties
+pip install deklinacija
+```
 ## Usage
 Simply `import` the package. It is recommended to set the alias to `dek`.
 

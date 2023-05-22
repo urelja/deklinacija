@@ -4,7 +4,7 @@ A Python library for declension of personal names in Serbian. The  grammatical r
 ## Installation
 The source code is currently hosted on GitHub: [https://github.com/urelja/deklinacija](https://github.com/urelja/deklinacija)
 
-The latest binary versions are hosted on the Python Package Index (PyPI).
+The latest binary versions are hosted on the Python Package Index (PyPI): [https://pypi.org/project/deklinacija/](https://pypi.org/project/deklinacija/).
 ```properties
 pip install deklinacija
 ```

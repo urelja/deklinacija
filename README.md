@@ -53,3 +53,6 @@ print("Dali ste poklon",Nikola['dativ'])
 The following features are on the roadmap:
 - Support for both Latin and Cyrillic scripts
 - Declension of last names
+
+## Attribution
+[Vokativi](https://github.com/startitrs/vokativi) by [Startit](https://github.com/startitrs) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) / Modifications: converted to Cyrillic and filtered out names longer than 4 characters

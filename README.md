@@ -20,14 +20,17 @@ The functions in this example return a `string`.
 ```python
 import deklinacija as dek
 
-changedName1 = dek.genitiv("Velja","male") #Velje
-changedName2 = dek.dativ("Petar","male") #Petru
-changedName3 = dek.akuzativ("Jana","female") #Janu
-changedName4 = dek.instrumental("Uroš","male") #Urošem
-changedName5 = dek.instrumental("Vuk","male") #Vukom
-changedName6 = dek.lokativ("Lana","female") #Lani
+genitiv = dek.genitiv("Velja","male") #Velje
+dativ = dek.dativ("Petar","male") #Petru
+akuzativ = dek.akuzativ("Jana","female") #Janu
+vokativ = dek.vokativ("Predrag","male") #Predraže
+instrumental = dek.instrumental("Uroš","male") #Urošem
+instrumental2 = dek.instrumental("Vuk","male") #Vukom
+lokativ = dek.lokativ("Lana","female") #Lani
 
-print("Dobili ste zahtev za prijateljstvo od",changedName1) #Dobili ste zahtev za prijateljstvo od Velje - Translation: You have received a friend request from Velja
+print(f"Zdravo, {vokativ}! Dobio si zahtev za prijateljstvo od {genitiv}.") 
+#Zdravo Predraže! Dobio si zahtev za prijateljstvo od Velje.
+#Translation: Hello Predrag! You have received a friend request from Velja.
 ```
 
 You can also immediatelly decline a name through all grammatical cases by calling the `declineAll()` function.
@@ -37,13 +40,12 @@ The `declineAll()` function returns a `dictionary`.
 ```python
 import deklinacija as dek
 
-Nikola = dek.declineAll("Nikola","male") #{'nominativ': 'Nikola', 'genitiv': 'Nikole', 'dativ': 'Nikoli', 'akuzativ': 'Nikolu', 'instrumental': 'Nikolom', 'lokativ': 'Nikoli'}
+Nikola = dek.declineAll("Nikola","male") #{'nominativ': 'Nikola', 'genitiv': 'Nikole', 'dativ': 'Nikoli', 'akuzativ': 'Nikolu', 'vokativ':'Nikola', 'instrumental': 'Nikolom', 'lokativ': 'Nikoli'}
 
 print("Dali ste poklon",Nikola['dativ']) #Dali ste poklon Nikoli - Translation: You have given a gift to Nikola
 ```
 
 ## Todo
 The following features are on the roadmap:
-- The vocative case
 - Support for both Latin and Cyrillic scripts
 - Declension of last names

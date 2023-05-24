@@ -4,7 +4,7 @@ A Python library for declension of personal names in Serbian. The  grammatical r
 ## Installation
 The source code is currently hosted on GitHub: [https://github.com/urelja/deklinacija](https://github.com/urelja/deklinacija)
 
-The latest binary versions are hosted on the Python Package Index (PyPI): [https://pypi.org/project/deklinacija/](https://pypi.org/project/deklinacija/).
+The latest binary versions are hosted on the Python Package Index (PyPI): [https://pypi.org/project/deklinacija/](https://pypi.org/project/deklinacija/)
 ```properties
 pip install deklinacija
 ```
@@ -40,9 +40,13 @@ The `declineAll()` function returns a `dictionary`.
 ```python
 import deklinacija as dek
 
-Nikola = dek.declineAll("Nikola","male") #{'nominativ': 'Nikola', 'genitiv': 'Nikole', 'dativ': 'Nikoli', 'akuzativ': 'Nikolu', 'vokativ':'Nikola', 'instrumental': 'Nikolom', 'lokativ': 'Nikoli'}
+Nikola = dek.declineAll("Nikola","male") 
+#{'nominativ': 'Nikola', 'genitiv': 'Nikole', 'dativ': 'Nikoli', 'akuzativ': 'Nikolu', 
+#'vokativ':'Nikola', 'instrumental': 'Nikolom', 'lokativ': 'Nikoli'}
 
-print("Dali ste poklon",Nikola['dativ']) #Dali ste poklon Nikoli - Translation: You have given a gift to Nikola
+print("Dali ste poklon",Nikola['dativ']) 
+#Dali ste poklon Nikoli
+#Translation: You have given a gift to Nikola
 ```
 
 ## Todo

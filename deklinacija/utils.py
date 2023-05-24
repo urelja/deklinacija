@@ -1,3 +1,4 @@
+import csv
 alphabet = {
     'a': 'а', 'b': 'б', 'c': 'ц', 'č': 'ч', 'ć': 'ћ', 'd': 'д', 'đ': 'ђ', 'dj': 'ђ', 'e': 'е', 'f': 'ф', 'g': 'г',
     'h': 'х', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'lj': 'љ', 'm': 'м', 'n': 'н', 'nj': 'њ', 'o': 'о',
@@ -9,6 +10,14 @@ alphabet_latin = {
     'п': 'p', 'р': 'r', 'с': 's', 'ш': 'š', 'т': 't', 'у': 'u', 'в': 'v', 'з': 'z', 'ж': 'ž', 'џ': 'dž'}
 
 latExceptions = []
+
+def isLatin(word):
+    if word[-1] in alphabet:
+        return True
+    elif word[-1] in alphabet_latin:
+        return False
+    else:
+        raise ValueError("word contains illegal characters")
 
 def toCyrillic(word):
 
@@ -123,4 +132,22 @@ def separateLetters(word):
             n += 1
     
     return wordArray
+
+# For converting the csv to cyrillic
+# with open('deklinacija/vokativ_database.csv',"r+",encoding="utf-8") as f:
     
+#     reader = dict(csv.reader(f, delimiter=","))
+#     converted = {}
+#     text = ""
+
+#     for (k,v) in reader.items():
+#         kConverted = toCyrillic(k)
+#         vConverted = toCyrillic(v)
+#         text = text + kConverted + "," + vConverted + "\n"
+    
+#     f.truncate(0)
+#     f.write(text)
+
+
+with open('deklinacija/vokativ_database.csv',"r",encoding="utf-8") as file:
+    vokativ_db = dict(csv.reader(file, delimiter=","))

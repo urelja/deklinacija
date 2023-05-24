@@ -3,10 +3,10 @@ import deklinacija.utils as utils
 VOWELS = ["a", "а", "e", "е", "i", "и", "o", "о",
           "u", "у"]  # used for identifying consonants
 
-NEP_A = ["ар","ај","ађ"] # words ending with these letters aren't prone to the nepostojano a sound change, the majority of names end like this
+NEP_A = ["ар","ац","ај","ађ"] # words ending with these letters aren't prone to the nepostojano a sound change, the majority of names end like this
 
 INSTRUMENTAL_LETTERS = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
-SOUND_CHANGE = {"k": "č", "g": "ž", "h": "š", }
+PALATALIZACIJA = {"k": "č", "g": "ž", "h": "š", }
 
 
 def genitiv(name, gender, latin=True):
@@ -142,6 +142,82 @@ def akuzativ(name, gender, latin=True):
 
     return "".join(name)
 
+def vokativ(name, gender, latin=True):
+    utils.check(name, gender, latin)
+    name = name.strip()
+    nameGenitiv = list(genitiv(name,gender,latin))
+    name = list(name)
+    nameSep = utils.separateLetters(name)
+
+    if gender.lower() == "female" and name[-1].lower() != "a":
+        return "".join(name)
+    if name[-1].lower() in ["k","g","h"]:
+        if nameGenitiv[-1].islower():
+            nameGenitiv[-1] = "e"
+            if nameGenitiv[-2].lower() in PALATALIZACIJA:
+                if nameGenitiv[-2].islower():
+                    nameGenitiv[-2] = PALATALIZACIJA[nameGenitiv[-2].lower()]
+                else:
+                    nameGenitiv[-2] = PALATALIZACIJA[nameGenitiv[-2].lower()].upper()
+            return "".join(nameGenitiv)
+        else:
+            nameGenitiv[-1] = "E"
+            if nameGenitiv[-2].lower() in PALATALIZACIJA:
+                if nameGenitiv[-2].islower():
+                    nameGenitiv[-2] = PALATALIZACIJA[nameGenitiv[-2].lower()]
+                else:
+                    nameGenitiv[-2] = PALATALIZACIJA[nameGenitiv[-2].lower()].upper()
+            return "".join(nameGenitiv)
+    
+    if name[-1].lower() == "e":
+        return "".join(name)
+    
+    if name[-1].lower() == "j":
+        if nameGenitiv[-1].islower():
+            nameGenitiv[-1] = "u"
+        else:
+            nameGenitiv[-1] = "U"
+        return "".join(nameGenitiv)
+    
+    if name[-3].lower()+name[-2].lower()+name[-1].lower() == "ica":
+        if name[-1].islower():
+            name[-1] = "e"
+        else:
+            name[-1] = "E"
+        return "".join(name)
+    
+    if name[-1].lower() == "o":
+        return "".join(name)
+    
+    if name[-1].lower() == "i":
+        return "".join(name)
+    
+    if name[-1].lower() == "u":
+        return "".join(name)
+    
+    if name[-1].lower() in ["a","а"]:
+        if len(nameSep) <= 4:
+            try:
+                if utils.isLatin(name[-1]):
+                    return utils.toLatin(utils.vokativ_db[utils.toCyrillic(name)])
+                else:
+                    return utils.vokativ_db[utils.toCyrillic(name)]
+            except KeyError:
+                if name[-1].islower():
+                    name[-1] = "o"
+                else:
+                    name[-1] = "O"
+                return "".join(name)
+
+    else:
+        if name[-1].islower():
+            nameGenitiv[-1] = "e"
+        else:
+            nameGenitiv[-1] = "E"
+        return "".join(nameGenitiv)
+
+    
+    return "".join(name)
 
 def instrumental(name, gender, latin=True):
     utils.check(name, gender, latin)
@@ -160,7 +236,7 @@ def instrumental(name, gender, latin=True):
         nameGenitiv.pop(-1)
 
         if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1] in INSTRUMENTAL_LETTERS:
-            if nameGenitiv[-2].lower() == "e":
+            if nameGenitiv[-2].lower() in ["i","e"]:
                 if lastChar.isupper():
                     nameGenitiv.append("OM")
                     return "".join(nameGenitiv)
@@ -193,6 +269,7 @@ def declineAll(name, gender, latin=True):
     name = name.strip()
 
     allDek = {"nominativ": name, "genitiv": genitiv(name, gender, latin), "dativ": dativ(name, gender, latin), "akuzativ": akuzativ(
-        name, gender, latin), "instrumental": instrumental(name, gender, latin), "lokativ": lokativ(name, gender, latin)}
+        name, gender, latin), "vokativ": vokativ(name, gender, latin), "instrumental": instrumental(name, gender, latin), "lokativ": lokativ(name, gender, latin)}
 
     return allDek
+

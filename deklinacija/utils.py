@@ -1,4 +1,6 @@
 import csv
+import os
+
 alphabet = {
     'a': 'а', 'b': 'б', 'c': 'ц', 'č': 'ч', 'ć': 'ћ', 'd': 'д', 'đ': 'ђ', 'dj': 'ђ', 'e': 'е', 'f': 'ф', 'g': 'г',
     'h': 'х', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'lj': 'љ', 'm': 'м', 'n': 'н', 'nj': 'њ', 'o': 'о',
@@ -148,6 +150,11 @@ def separateLetters(word):
 #     f.truncate(0)
 #     f.write(text)
 
+module_path = os.path.abspath(__file__)
 
-with open('deklinacija/vokativ_database.csv',"r",encoding="utf-8") as file:
+module_directory = os.path.dirname(module_path)
+
+csv_file_path = os.path.join(module_directory, 'vokativ_database.csv')
+
+with open(csv_file_path,"r",encoding="utf-8") as file:
     vokativ_db = dict(csv.reader(file, delimiter=","))

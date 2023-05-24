@@ -196,7 +196,7 @@ def vokativ(name, gender, latin=True):
         return "".join(name)
     
     if name[-1].lower() in ["a","а"]:
-        if len(nameSep) <= 4:
+        if len(nameSep) <= 5:
             try:
                 if utils.isLatin(name[-1]):
                     return utils.toLatin(utils.vokativ_db[utils.toCyrillic(name)])

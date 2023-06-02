@@ -14,9 +14,9 @@ alphabet_latin = {
 latExceptions = []
 
 def isLatin(word):
-    if word[-1] in alphabet:
+    if word[-1].lower() in alphabet:
         return True
-    elif word[-1] in alphabet_latin:
+    elif word[-1].lower() in alphabet_latin:
         return False
     else:
         raise ValueError("word contains illegal characters")
@@ -95,8 +95,8 @@ def toLatin(word):
     
     return "".join(word)
 
-def check(name,gender,latin):
-    if type(name) != str or type(name) != str or type(gender) != str or type(latin) != bool:
+def check(name,gender):
+    if type(name) != str or type(name) != str or type(gender) != str:
         raise TypeError("name and gender params must be a string, param latin must be a boolean")
     
     gender = gender.strip()
@@ -149,7 +149,15 @@ def separateLetters(word):
     
 #     f.truncate(0)
 #     f.write(text)
-
+def formatName(word):
+    word = list(word)
+    word[0] = word[0].upper()
+    n = 1
+    while n < len(word):
+        word[n] = word[n].lower()
+        n += 1
+    return "".join(word)
+        
 module_path = os.path.abspath(__file__)
 
 module_directory = os.path.dirname(module_path)

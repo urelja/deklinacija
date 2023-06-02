@@ -1,5 +1,5 @@
 # deklinacija
-A Python library for declension of personal names in Serbian. The  grammatical rules utlized in this library also apply to Croatian and Bosnian.
+A Python library for declension of personal names in Serbian, with support for both Cyrillic and Latin scripts.
 
 ## Installation
 The source code is currently hosted on GitHub: [https://github.com/urelja/deklinacija](https://github.com/urelja/deklinacija)
@@ -14,18 +14,19 @@ Simply `import` the package. It is recommended to set the alias to `dek`.
 ```python
 import deklinacija as dek
 ```
-**As of right now, only first names are supported.** To decline names, all you have to do is to call the appropriate function for the grammatical case you want to use, and specify the `name` and the `gender` parameter. There is also the third `latin` parameter, which indicates whether the provided `name` parameter is written in the Cyrillic or Latin script. **Currently, only the Latin script is supported.**
+**As of right now, only first names are supported.** To decline names, all you have to do is to call the appropriate function for the grammatical case you want to use, and specify the `name` and the `gender` parameter. The name parameter must be a `string`, can have either Latin or Cyrillic characters (automatically detected), and can contain uppercase or lowercase letters (the script respects the capitalisation of the name and will capitalise the added suffixes according to the last character's capitalisation, see `vokativ2` below).
 
 The functions in this example return a `string`.
 ```python
 import deklinacija as dek
 
 genitiv = dek.genitiv("Velja","male") #Velje
-dativ = dek.dativ("Petar","male") #Petru
+dativ = dek.dativ("Петар","male") #Петру
 akuzativ = dek.akuzativ("Jana","female") #Janu
 vokativ = dek.vokativ("Predrag","male") #Predraže
+vokativ2 = dek.vokativ("PREDRAG","male") #PREDRAŽE
 instrumental = dek.instrumental("Uroš","male") #Urošem
-instrumental2 = dek.instrumental("Vuk","male") #Vukom
+instrumental2 = dek.instrumental("Вук","male") #Вуком
 lokativ = dek.lokativ("Lana","female") #Lani
 
 print(f"Zdravo, {vokativ}! Dobio si zahtev za prijateljstvo od {genitiv}.") 
@@ -35,7 +36,7 @@ print(f"Zdravo, {vokativ}! Dobio si zahtev za prijateljstvo od {genitiv}.")
 
 You can also immediatelly decline a name through all grammatical cases by calling the `declineAll()` function.
 
-The `declineAll()` function returns a `dictionary`.
+The `declineAll()` function returns a `dictionary`, where keys are the grammatical cases.
 
 ```python
 import deklinacija as dek
@@ -51,8 +52,9 @@ print("Dali ste poklon",Nikola['dativ'])
 
 ## Todo
 The following features are on the roadmap:
-- Support for both Latin and Cyrillic scripts
 - Declension of last names
+- Possessive forms
+
 
 ## Attribution
 [Vokativi](https://github.com/startitrs/vokativi) by [Startit](https://github.com/startitrs) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) / Modifications: converted to Cyrillic and filtered out names longer than 4 characters

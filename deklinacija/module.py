@@ -118,9 +118,9 @@ def genitiv(name, gender):
 
 
 def dativ(name, gender):
-    utils.check(name, gender, latin)
+    utils.check(name, gender)
     name = name.strip()
-    name = list(genitiv(name, gender, latin))
+    name = list(genitiv(name, gender))
 
     lastChar = name[-1]
     secToLastChar = name[-2]

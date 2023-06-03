@@ -11,6 +11,8 @@ alphabet_latin = {
     'х': 'h', 'и': 'i', 'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm', 'н': 'n', 'њ': 'nj', 'о': 'o',
     'п': 'p', 'р': 'r', 'с': 's', 'ш': 'š', 'т': 't', 'у': 'u', 'в': 'v', 'з': 'z', 'ж': 'ž', 'џ': 'dž'}
 
+ZVUCNI = ["б","д","г","ђ","ж","з","џ"]
+
 latExceptions = []
 
 def isLatin(word):
@@ -134,6 +136,13 @@ def separateLetters(word):
             n += 1
     
     return wordArray
+
+def isZvucni(letter):
+    if toCyrillic(letter.lower()) in ZVUCNI:
+        return True
+    else:
+        return False
+
 
 # For converting the csv to cyrillic
 # with open('deklinacija/vokativ_database.csv',"r+",encoding="utf-8") as f:

@@ -2,53 +2,46 @@ import deklinacija.utils as utils
 
 VOWELS = ["а","е","и","о","у"]  # used for identifying consonants
 
-NEP_A = ["ар","ац","ај","ађ"] # the last and second to last characters in names ending in these characters switch places during declension
-NEP_A_EXCEPT = ["БОЖИДАР"] # names which have one of the above suffixes but the last and the 2nd to last characters don't switch places during declension
-
+NEP_A = ["тар","ац","рај","рађ","рак","нак","ндар"] # the last and second to last characters in names ending in these characters switch places during declension
+NEP_A_EXCEPT = [] # names which have one of the above suffixes but the last and the 2nd to last characters don't switch places during declension
 INSTRUMENTAL_LETTERS = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
 PALATALIZACIJA = {"к": "ч", "г": "ж", "х": "ш", }
 
 
 def genitiv(name, gender):
     utils.check(name, gender)
-
+    nameList = name.split(" ")
+    print(nameList)
     name = utils.separateLetters(name.strip())
 
     lastChar = name[-1]
     secToLastChar = name[-2]
     trdToLastChar = name[-3]
+    
+    lastThree = (name[-3]+name[-2]+name[-1]).lower()
     lastTwo = (name[-2]+name[-1]).lower()
-
-    if (secToLastChar+lastChar).lower() in ["иа","ia"]:
-        name.pop(-1)
-        if lastChar.isupper():
-            if utils.isLatin(lastChar) == True:
-                name.append("JE")
-                return "".join(name)
-            else:
-                name.append("ЈЕ")
-                return "".join(name)
-        else:
-            if utils.isLatin(lastChar) == True:
-                name.append("је")
-                return "".join(name)
-            else:
-                name.append("је")
-                return "".join(name)
 
     if lastChar.lower() in ["а","a"]:
         if lastChar.isupper():
             if utils.isLatin(lastChar) == True:
+                if secToLastChar.lower() in ["и","i"]:
+                    name.insert(-1,"J")
                 name[-1] = "E"
                 return "".join(name)
             else:
+                if secToLastChar.lower() in ["и","i"]:
+                    name.insert(-1,"Ј")
                 name[-1] = "Е"
                 return "".join(name)
         else:
             if utils.isLatin(lastChar) == True:
+                if secToLastChar.lower() in ["и","i"]:
+                    name.insert(-1,"j")
                 name[-1] = "e"
                 return "".join(name)
             else:
+                if secToLastChar.lower() in ["и","i"]:
+                    name.insert(-1,"ј")
                 name[-1] = "е"
                 return "".join(name)
 
@@ -60,16 +53,24 @@ def genitiv(name, gender):
         if lastChar.lower() in ["е","e","о","o"]:
             if lastChar.isupper():
                 if utils.isLatin(lastChar) == True:
+                    if secToLastChar.lower() in ["и","i"]:
+                        name.insert(-1,"J")
                     name[-1] = "A"
                     return "".join(name)
                 else:
+                    if secToLastChar.lower() in ["и","i"]:
+                        name.insert(-1,"Ј")
                     name[-1] = "А"
                     return "".join(name)
             else:
                 if utils.isLatin(lastChar) == True:
+                    if secToLastChar.lower() in ["и","i"]:
+                        name.insert(-1,"j")
                     name[-1] = "a"
                     return "".join(name)
                 else:
+                    if secToLastChar.lower() in ["и","i"]:
+                        name.insert(-1,"ј")
                     name[-1] = "а"
                     return "".join(name)
 
@@ -88,10 +89,28 @@ def genitiv(name, gender):
                 else:
                     name.append("ја")
                     return "".join(name)
+        
+        if len(name) < 4:
+            lastFour = None
+            
+        else:
+            lastFour = (name[-4]+name[-3]+name[-2]+name[-1]).lower()
+            fthToLastChar = lastFour[-4]
 
-        if len(name) >= 4 and utils.toCyrillic(lastTwo) in NEP_A and utils.toCyrillic(secToLastChar.lower()) == "а" and utils.toCyrillic(lastChar.lower()) not in VOWELS and utils.toCyrillic(trdToLastChar.lower()) not in VOWELS and utils.toCyrillic("".join(name).upper()) not in NEP_A_EXCEPT:
+        if len(name) >= 4 and (utils.toCyrillic(lastFour.lower()) in NEP_A or utils.toCyrillic(lastThree.lower()) in NEP_A or utils.toCyrillic(lastTwo.lower()) in NEP_A) and utils.toCyrillic(secToLastChar.lower()) == "а" and utils.toCyrillic(lastChar.lower()) not in VOWELS and utils.toCyrillic(trdToLastChar.lower()) not in VOWELS and utils.toCyrillic("".join(name).upper()) not in NEP_A_EXCEPT:
+            if utils.toCyrillic(lastThree.lower()) != "ндар" and utils.toCyrillic(fthToLastChar.lower()) not in VOWELS:
+                if lastChar.isupper():
+                    if utils.isLatin(lastChar) == True:
+                        name.append("A")
+                    else:
+                        name.append("А")
+                else:
+                    if utils.isLatin(lastChar) == True:
+                        name.append("a")
+                    else:
+                        name.append("а")
             # nepostojano a
-            if name[-1].isupper():
+            elif name[-1].isupper():
                 name[-2] = name[-1]
                 if utils.isLatin(lastChar) == True:
                     name[-1] = "A"
@@ -185,6 +204,9 @@ def vokativ(name, gender):
     if gender.lower() == "female" and name[-1].lower() not in ["а","a"]:
         return "".join(name)
     
+    if name[-2].lower()+name[-1].lower() in ["ia","иа"]:
+        return "".join(name)
+
     if utils.toCyrillic(name[-1].lower()) in ["к","г","х"]:
 
         if nameGenitiv[-1].islower():
@@ -257,16 +279,25 @@ def vokativ(name, gender):
             except KeyError:
                 if name[-1].islower():
                     if utils.isLatin(name[-1]):
+                        if name[-2].lower() in ["и","i"]:
+                            name.insert(-1,"j")
                         name[-1] = "o"
                     else:
+                        if name[-2].lower() in ["и","i"]:
+                            name.insert(-1,"ј")
                         name[-1] = "о"
                 else:
                     if utils.isLatin(name[-1]):
+                        if name[-2].lower() in ["и","i"]:
+                            name.insert(-1,"J")
                         name[-1] = "O"
                     else:
+                        if name[-2].lower() in ["и","i"]:
+                            name.insert(-1,"Ј")
                         name[-1] = "О"
                 return "".join(name)
     else:
+        
         if name[-1].islower():
             if utils.isLatin(name[-1]):
                 nameGenitiv[-1] = "e"

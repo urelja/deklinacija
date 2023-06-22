@@ -2,7 +2,7 @@ import deklinacija.utils as utils
 
 VOWELS = ["а","е","и","о","у"]  # used for identifying consonants
 
-NEP_A = ["тар","ац","рај","рађ","рак","нак","ндар"] # the last and second to last characters in names ending in these characters switch places during declension
+NEP_A = ["тар","ац","рај","рађ","рак","нак","ндар","чак"] # the last and second to last characters in names ending in these characters switch places during declension
 NEP_A_EXCEPT = [] # names which have one of the above suffixes but the last and the 2nd to last characters don't switch places during declension
 INSTRUMENTAL_LETTERS = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
 PALATALIZACIJA = {"к": "ч", "г": "ж", "х": "ш", }
@@ -11,7 +11,6 @@ PALATALIZACIJA = {"к": "ч", "г": "ж", "х": "ш", }
 def genitiv(name, gender):
     utils.check(name, gender)
     nameList = name.split(" ")
-    print(nameList)
     name = utils.separateLetters(name.strip())
 
     lastChar = name[-1]
@@ -95,10 +94,10 @@ def genitiv(name, gender):
             
         else:
             lastFour = (name[-4]+name[-3]+name[-2]+name[-1]).lower()
-            fthToLastChar = lastFour[-4]
+            fthToLastChar = utils.separateLetters(lastFour)[-4]
 
         if len(name) >= 4 and (utils.toCyrillic(lastFour.lower()) in NEP_A or utils.toCyrillic(lastThree.lower()) in NEP_A or utils.toCyrillic(lastTwo.lower()) in NEP_A) and utils.toCyrillic(secToLastChar.lower()) == "а" and utils.toCyrillic(lastChar.lower()) not in VOWELS and utils.toCyrillic(trdToLastChar.lower()) not in VOWELS and utils.toCyrillic("".join(name).upper()) not in NEP_A_EXCEPT:
-            if utils.toCyrillic(lastThree.lower()) != "ндар" and utils.toCyrillic(fthToLastChar.lower()) not in VOWELS:
+            if utils.toCyrillic(lastFour.lower()) != "ндар" and utils.toCyrillic(fthToLastChar.lower()) not in VOWELS:
                 if lastChar.isupper():
                     if utils.isLatin(lastChar) == True:
                         name.append("A")
@@ -198,6 +197,7 @@ def vokativ(name, gender):
     nameGenitiv = list(genitiv(name,gender))
     name = list(name)
     nameSep = utils.separateLetters(name)
+    print(nameSep)
     rest = "".join(name[:-1])
     
 
@@ -206,9 +206,23 @@ def vokativ(name, gender):
     
     if name[-2].lower()+name[-1].lower() in ["ia","иа"]:
         return "".join(name)
-
+    
+    
+    if utils.toCyrillic(name[-1].lower()) in ["к","ц"] and (utils.toCyrillic((nameSep[-3]+nameSep[-2]+nameSep[-1]).lower()) in NEP_A or utils.toCyrillic(nameSep[-2]+nameSep[-1]).lower() in NEP_A):
+        if nameGenitiv[-1].islower():
+            if utils.isLatin(nameGenitiv[-1]) == True:
+                nameGenitiv[-1] = "u"
+            else:
+                nameGenitiv[-1] = "у"
+        else:
+            if utils.isLatin(nameGenitiv[-1]) == True:
+                nameGenitiv[-1] = "U"
+            else:
+                nameGenitiv[-1] = "У"
+        return "".join(nameGenitiv)
+    
     if utils.toCyrillic(name[-1].lower()) in ["к","г","х"]:
-
+        
         if nameGenitiv[-1].islower():
             if utils.isLatin(nameGenitiv[-1]) == True:
                 nameGenitiv[-1] = "e"
@@ -234,7 +248,7 @@ def vokativ(name, gender):
             
             return "".join(nameGenitiv)
     
-    if name[-1].lower() in ["j","ј"]:
+    if utils.toCyrillic(name[-1].lower()) in INSTRUMENTAL_LETTERS:
         if nameGenitiv[-1].islower():
             if utils.isLatin(nameGenitiv[-1]) == True:
                 nameGenitiv[-1] = "u"
@@ -247,7 +261,7 @@ def vokativ(name, gender):
                 nameGenitiv[-1] = "У"
         return "".join(nameGenitiv)
     
-    if utils.toCyrillic(name[-3].lower()+name[-2].lower()+name[-1].lower()).lower() in ["ица"]:
+    if utils.toCyrillic(name[-3].lower()+name[-2].lower()+name[-1].lower()).lower() in ["ица"] and len(name) > 5:
         if name[-1].islower():
             if utils.isLatin(nameGenitiv[-1]) == True:
                 name[-1] = "e"
@@ -328,7 +342,7 @@ def instrumental(name, gender):
 
     nameGenitiv.pop(-1)
 
-    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in INSTRUMENTAL_LETTERS and nameGenitiv[-2].lower() not in ["i","и","e","е"]:
+    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in INSTRUMENTAL_LETTERS and name[-1] not in ["а","a"]:
         if lastChar.isupper():
             if utils.isLatin(lastChar):
                 nameGenitiv.append("EM")

@@ -1,0 +1,8 @@
+{'nominativ': 'Jana', 'genitiv': 'Jane', 'dativ': 'Jani', 'akuzativ': 'Janu', 'vokativ': 'Jano', 'instrumental': 'Janom', 'lokativ': 'Jani'}
+{'nominativ': 'Milica', 'genitiv': 'Milice', 'dativ': 'Milici', 'akuzativ': 'Milicu', 'vokativ': 'Milice', 'instrumental': 'Milicom', 'lokativ': 'Milici'}
+{'nominativ': 'Mia', 'genitiv': 'Mije', 'dativ': 'Miji', 'akuzativ': 'Miju', 'vokativ': 'Mia', 'instrumental': 'Mijom', 'lokativ': 'Miji'}
+{'nominativ': 'Ines', 'genitiv': 'Ines', 'dativ': 'Ines', 'akuzativ': 'Ines', 'vokativ': 'Ines', 'instrumental': 'Ines', 'lokativ': 'Ines'}
+{'nominativ': 'Tea', 'genitiv': 'Tee', 'dativ': 'Tei', 'akuzativ': 'Teu', 'vokativ': 'Tea', 'instrumental': 'Teom', 'lokativ': 'Tei'}
+{'nominativ': 'Ina', 'genitiv': 'Ine', 'dativ': 'Ini', 'akuzativ': 'Inu', 'vokativ': 'Ina', 'instrumental': 'Inom', 'lokativ': 'Ini'}
+{'nominativ': 'Petrović', 'genitiv': 'Petrović', 'dativ': 'Petrović', 'akuzativ': 'Petrović', 'vokativ': 'Petrović', 'instrumental': 'Petrović', 'lokativ': 'Petrović'}
+{'nominativ': 'Daria', 'genitiv': 'Darije', 'dativ': 'Dariji', 'akuzativ': 'Dariju', 'vokativ': 'Daria', 'instrumental': 'Darijom', 'lokativ': 'Dariji'}

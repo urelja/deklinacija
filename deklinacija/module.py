@@ -197,7 +197,6 @@ def vokativ(name, gender):
     nameGenitiv = list(genitiv(name,gender))
     name = list(name)
     nameSep = utils.separateLetters(name)
-    print(nameSep)
     rest = "".join(name[:-1])
     
 

@@ -3,8 +3,8 @@ import deklinacija as dek
 import ast
 import os
 
-namesMale = ["Predrag","Minja","Relja","Uroš","Petrović","Petar","Mačak","Božidar","Đurađ","Djuradj","Miki","Dario","Čuperak","Đorđe","Djordje","Pablo","Juraj","Aleksandar","Opanak"]
-namesFemale = ["Jana","Milica","Mia","Ines","Tea","Ina","Petrović","Daria"]
+namesMale = ["Predrag","Minja","Relja","Uroš","Petrović","Petar","Mačak","Božidar","Đurađ","Djuradj","Miki","Dario","Čuperak","Đorđe","Djordje","Pablo","Juraj","Aleksandar","Opanak","Vlah","Subotički","Niški","Srpski","Dario Subotički","Minja Niški","Miki Srpski"]
+namesFemale = ["Jana","Milica","Mia","Ines","Tea","Ina","Petrović","Daria","Anžujska","Subotički","Petka","Lana Petrović","Sandra Anžujska","Milica Tabova","Milica Releva"]
 
 module_path = os.path.abspath(__file__)
 module_directory = os.path.dirname(module_path)

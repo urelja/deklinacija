@@ -6,3 +6,10 @@
 {'nominativ': 'Ina', 'genitiv': 'Ine', 'dativ': 'Ini', 'akuzativ': 'Inu', 'vokativ': 'Ina', 'instrumental': 'Inom', 'lokativ': 'Ini'}
 {'nominativ': 'Petrović', 'genitiv': 'Petrović', 'dativ': 'Petrović', 'akuzativ': 'Petrović', 'vokativ': 'Petrović', 'instrumental': 'Petrović', 'lokativ': 'Petrović'}
 {'nominativ': 'Daria', 'genitiv': 'Darije', 'dativ': 'Dariji', 'akuzativ': 'Dariju', 'vokativ': 'Daria', 'instrumental': 'Darijom', 'lokativ': 'Dariji'}
+{'nominativ': 'Anžujska', 'genitiv': 'Anžujske', 'dativ': 'Anžujskoj', 'akuzativ': 'Anžujsku', 'vokativ': 'Anžujska', 'instrumental': 'Anžujskom', 'lokativ': 'Anžujskoj'}
+{'nominativ': 'Subotički', 'genitiv': 'Subotički', 'dativ': 'Subotički', 'akuzativ': 'Subotički', 'vokativ': 'Subotički', 'instrumental': 'Subotički', 'lokativ': 'Subotički'}
+{'nominativ': 'Petka', 'genitiv': 'Petke', 'dativ': 'Petkoj', 'akuzativ': 'Petku', 'vokativ': 'Petko', 'instrumental': 'Petkom', 'lokativ': 'Petkoj'}
+{'nominativ': 'Lana Petrović', 'genitiv': 'Lane Petrović', 'dativ': 'Lani Petrović', 'akuzativ': 'Lanu Petrović', 'vokativ': 'Lano Petrović', 'instrumental': 'Lanom Petrović', 'lokativ': 'Lani Petrović'}
+{'nominativ': 'Sandra Anžujska', 'genitiv': 'Sandre Anžujske', 'dativ': 'Sandri Anžujskoj', 'akuzativ': 'Sandru Anžujsku', 'vokativ': 'Sandra Anžujska', 'instrumental': 'Sandrom Anžujskom', 'lokativ': 'Sandri Anžujskoj'}
+{'nominativ': 'Milica Tabova', 'genitiv': 'Milice Tabove', 'dativ': 'Milici Tabovoj', 'akuzativ': 'Milicu Tabovu', 'vokativ': 'Milice Tabova', 'instrumental': 'Milicom Tabovom', 'lokativ': 'Milici Tabovoj'}
+{'nominativ': 'Milica Releva', 'genitiv': 'Milice Releve', 'dativ': 'Milici Relevoj', 'akuzativ': 'Milicu Relevu', 'vokativ': 'Milice Releva', 'instrumental': 'Milicom Relevom', 'lokativ': 'Milici Relevoj'}

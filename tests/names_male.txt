@@ -17,3 +17,10 @@
 {'nominativ': 'Juraj', 'genitiv': 'Jurja', 'dativ': 'Jurju', 'akuzativ': 'Jurja', 'vokativ': 'Jurju', 'instrumental': 'Jurjem', 'lokativ': 'Jurju'}
 {'nominativ': 'Aleksandar', 'genitiv': 'Aleksandra', 'dativ': 'Aleksandru', 'akuzativ': 'Aleksandra', 'vokativ': 'Aleksandre', 'instrumental': 'Aleksandrom', 'lokativ': 'Aleksandru'}
 {'nominativ': 'Opanak', 'genitiv': 'Opanka', 'dativ': 'Opanku', 'akuzativ': 'Opanka', 'vokativ': 'Opanku', 'instrumental': 'Opankom', 'lokativ': 'Opanku'}
+{'nominativ': 'Vlah', 'genitiv': 'Vlaha', 'dativ': 'Vlahu', 'akuzativ': 'Vlaha', 'vokativ': 'Vlaše', 'instrumental': 'Vlahom', 'lokativ': 'Vlahu'}
+{'nominativ': 'Subotički', 'genitiv': 'Subotičkog', 'dativ': 'Subotičkom', 'akuzativ': 'Subotičkog', 'vokativ': 'Subotički', 'instrumental': 'Subotičkim', 'lokativ': 'Subotičkom'}
+{'nominativ': 'Niški', 'genitiv': 'Niškog', 'dativ': 'Niškom', 'akuzativ': 'Niškog', 'vokativ': 'Niški', 'instrumental': 'Niškim', 'lokativ': 'Niškom'}
+{'nominativ': 'Srpski', 'genitiv': 'Srpskog', 'dativ': 'Srpskom', 'akuzativ': 'Srpskog', 'vokativ': 'Srpski', 'instrumental': 'Srpskim', 'lokativ': 'Srpskom'}
+{'nominativ': 'Dario Subotički', 'genitiv': 'Darija Subotičkog', 'dativ': 'Dariju Subotičkom', 'akuzativ': 'Darija Subotičkog', 'vokativ': 'Dario Subotički', 'instrumental': 'Darijem Subotičkim', 'lokativ': 'Dariju Subotičkom'}       
+{'nominativ': 'Minja Niški', 'genitiv': 'Minje Niškog', 'dativ': 'Minji Niškom', 'akuzativ': 'Minju Niškog', 'vokativ': 'Minja Niški', 'instrumental': 'Minjom Niškim', 'lokativ': 'Minji Niškom'}
+{'nominativ': 'Miki Srpski', 'genitiv': 'Mikija Srpskog', 'dativ': 'Mikiju Srpskom', 'akuzativ': 'Mikija Srpskog', 'vokativ': 'Miki Srpski', 'instrumental': 'Mikijem Srpskim', 'lokativ': 'Mikiju Srpskom'}

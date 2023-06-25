@@ -11,9 +11,10 @@ alphabet_latin = {
     'х': 'h', 'и': 'i', 'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm', 'н': 'n', 'њ': 'nj', 'о': 'o',
     'п': 'p', 'р': 'r', 'с': 's', 'ш': 'š', 'т': 't', 'у': 'u', 'в': 'v', 'з': 'z', 'ж': 'ž', 'џ': 'dž'}
 
-ZVUCNI = ["б","д","г","ђ","ж","з","џ"]
+ZVUCNI = ["б", "д", "г", "ђ", "ж", "з", "џ"]
 
 latExceptions = []
+
 
 def isLatin(word):
     if word[-1].lower() in alphabet:
@@ -23,12 +24,12 @@ def isLatin(word):
     else:
         raise ValueError("word contains illegal characters")
 
+
 def toCyrillic(word):
 
     wordArray = []
     word = list(word)
     wordText = "".join(word)
-    
 
     if wordText.lower() not in latExceptions:
         n = 0
@@ -77,14 +78,16 @@ def toCyrillic(word):
 
     return word
 
+
 def toLatin(word):
     word = list(word)
 
     n = 0
     for i in word:
         if i.lower() in alphabet_latin:
-            if i[0].isupper() and i.lower() in ['љ','њ','џ']:
-                letter = alphabet_latin[i.lower()][0].upper() + alphabet_latin[i.lower()][1]
+            if i[0].isupper() and i.lower() in ['љ', 'њ', 'џ']:
+                letter = alphabet_latin[i.lower()][0].upper(
+                ) + alphabet_latin[i.lower()][1]
                 word[n] = letter
             elif i[0].isupper():
                 word[n] = alphabet_latin[i.lower()].upper()
@@ -94,27 +97,29 @@ def toLatin(word):
         else:
             word[n] = i
         n += 1
-    
+
     return "".join(word)
 
-def check(name,gender):
+
+def check(name, gender):
     if type(name) != str or type(name) != str or type(gender) != str:
-        raise TypeError("name and gender params must be a string, param latin must be a boolean")
-    
+        raise TypeError(
+            "name and gender params must be a string, param latin must be a boolean")
+
     gender = gender.strip()
     name = name.strip()
 
-    if gender.lower() not in ["male","female"]:
+    if gender.lower() not in ["male", "female"]:
         raise ValueError('gender param must be either "male" or "female"')
 
     if len(name) < 3:
         raise ValueError("name param must be at least 3 characters long")
-    
+
+
 def separateLetters(word):
     word = list(word)
     wordText = "".join(word)
     wordArray = []
-    
 
     n = 0
     while n <= (len(word)-1):
@@ -134,8 +139,9 @@ def separateLetters(word):
         else:
             wordArray.append(word[n])
             n += 1
-    
+
     return wordArray
+
 
 def isZvucni(letter):
     if toCyrillic(letter.lower()) in ZVUCNI:
@@ -143,10 +149,9 @@ def isZvucni(letter):
     else:
         return False
 
-
 # For converting the csv to cyrillic
 # with open('deklinacija/vokativ_database.csv',"r+",encoding="utf-8") as f:
-    
+
 #     reader = dict(csv.reader(f, delimiter=","))
 #     converted = {}
 #     text = ""
@@ -155,9 +160,11 @@ def isZvucni(letter):
 #         kConverted = toCyrillic(k)
 #         vConverted = toCyrillic(v)
 #         text = text + kConverted + "," + vConverted + "\n"
-    
+
 #     f.truncate(0)
 #     f.write(text)
+
+
 def formatName(word):
     word = list(word)
     word[0] = word[0].upper()
@@ -166,12 +173,13 @@ def formatName(word):
         word[n] = word[n].lower()
         n += 1
     return "".join(word)
-        
+
+
 module_path = os.path.abspath(__file__)
 
 module_directory = os.path.dirname(module_path)
 
 csv_file_path = os.path.join(module_directory, 'vokativ_database.csv')
 
-with open(csv_file_path,"r",encoding="utf-8") as file:
+with open(csv_file_path, "r", encoding="utf-8") as file:
     vokativ_db = dict(csv.reader(file, delimiter=","))

@@ -563,7 +563,7 @@ def __instrumental(name, gender):
                 name[-1] = "им"
         return "".join(name)
 
-    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in INSTRUMENTAL_LETTERS and name[-1] not in ["а", "a"]:
+    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in INSTRUMENTAL_LETTERS and name[-1].lower() not in ["а", "a"]:
         if lastChar.isupper():
             if utils.isLatin(lastChar):
                 nameGenitiv.append("EM")

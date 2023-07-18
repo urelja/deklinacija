@@ -24,3 +24,5 @@
 {'nominativ': 'Dario Subotički', 'genitiv': 'Darija Subotičkog', 'dativ': 'Dariju Subotičkom', 'akuzativ': 'Darija Subotičkog', 'vokativ': 'Dario Subotički', 'instrumental': 'Darijem Subotičkim', 'lokativ': 'Dariju Subotičkom'}       
 {'nominativ': 'Minja Niški', 'genitiv': 'Minje Niškog', 'dativ': 'Minji Niškom', 'akuzativ': 'Minju Niškog', 'vokativ': 'Minja Niški', 'instrumental': 'Minjom Niškim', 'lokativ': 'Minji Niškom'}
 {'nominativ': 'Miki Srpski', 'genitiv': 'Mikija Srpskog', 'dativ': 'Mikiju Srpskom', 'akuzativ': 'Mikija Srpskog', 'vokativ': 'Miki Srpski', 'instrumental': 'Mikijem Srpskim', 'lokativ': 'Mikiju Srpskom'}
+{'nominativ': 'RELJA', 'genitiv': 'RELJE', 'dativ': 'RELJI', 'akuzativ': 'RELJU', 'vokativ': 'RELJA', 'instrumental': 'RELJOM', 'lokativ': 'RELJI'}
+{'nominativ': 'ALEK', 'genitiv': 'ALEKA', 'dativ': 'ALEKU', 'akuzativ': 'ALEKA', 'vokativ': 'ALEČE', 'instrumental': 'ALEKOM', 'lokativ': 'ALEKU'}

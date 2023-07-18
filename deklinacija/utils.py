@@ -149,7 +149,10 @@ def isZvucni(letter):
     else:
         return False
 
-# For converting the csv to cyrillic
+#Excel formula for filtering names shorter or equal to 5 characters and ending in cyrillic "а"
+#(assumes that names start from the second row): 
+# =FILTER(A2:B1970;(LEN(A2:A1970)<=5)*(RIGHT(A2:A1970)="а"))
+#For converting the csv to cyrillic:
 # with open('deklinacija/vokativ_database.csv',"r+",encoding="utf-8") as f:
 
 #     reader = dict(csv.reader(f, delimiter=","))
@@ -166,12 +169,10 @@ def isZvucni(letter):
 
 
 def formatName(word):
+    if type(word) == list:
+        word = "".join(word).lower()
     word = list(word)
     word[0] = word[0].upper()
-    n = 1
-    while n < len(word):
-        word[n] = word[n].lower()
-        n += 1
     return "".join(word)
 
 
@@ -182,4 +183,4 @@ module_directory = os.path.dirname(module_path)
 csv_file_path = os.path.join(module_directory, 'vokativ_database.csv')
 
 with open(csv_file_path, "r", encoding="utf-8") as file:
-    vokativ_db = dict(csv.reader(file, delimiter=","))
+    vokativ_db = dict(csv.reader(file, delimiter=";"))

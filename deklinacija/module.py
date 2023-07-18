@@ -489,7 +489,7 @@ def __vokativ(name, gender):
         return "".join(name)
 
     if name[-1].lower() in ["a", "а"]:
-        if len(nameSep) <= 5:
+        if len(nameSep) <= 6:
             try:
                 if name[-1].isupper():
                     if utils.isLatin(name[-1]):
@@ -502,6 +502,9 @@ def __vokativ(name, gender):
                     else:
                         return rest+(utils.vokativ_db[utils.toCyrillic(utils.formatName(name))][-1])
             except KeyError:
+                if len(nameSep) == 6:
+                    return "".join(name)
+                
                 if name[-1].islower():
                     if utils.isLatin(name[-1]):
                         if name[-2].lower() in ["и", "i"]:

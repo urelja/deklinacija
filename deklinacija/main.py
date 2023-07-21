@@ -5,9 +5,11 @@ VOWELS = ["а", "е", "и", "о", "у"]  # used for identifying consonants
 # the last and second to last characters in names ending in these characters switch places during declension
 NEP_A = ["тар", "ац", "рај", "рађ", "рак", "нак", "ндар", "чак"]
 NEP_A_EXCEPT = []  # names which have one of the above suffixes but the last and the 2nd to last characters don't switch places during declension
-INSTRUMENTAL_LETTERS = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
+ZADNJONEPCANI = ["ј", "љ", "њ", "ђ", "ћ", "ч", "џ", "ш", "ж"]
 PALATALIZACIJA = {"к": "ч", "г": "ж", "х": "ш", }
-
+POSSESIVE_SUFFIXES = {"male_singular":"","male_plural":"и","female_singular":"а","female_plural":"е","neutral_singular":"о","neutral_plural":"а"}
+MALE_EXCEPTIONS = ["тата","газда","судија","ага"]
+FEMALE_EXCEPTIONS = ["пећ","чађ","кћер","ствар","љубав","радост"]
 
 def genitiv(name, gender):
     """
@@ -108,9 +110,13 @@ def vokativ(name, gender):
     name = name.strip()
     fullName = name.split()
     returnName = []
-
+    n = 0
     for i in fullName:
-        changedName = __vokativ(i, gender)
+        if n == 0: 
+            changedName = __vokativ(i, gender,False)
+            n += 1
+        else:
+            changedName = __vokativ(i, gender,True)
         returnName.append(changedName)
 
     return " ".join(returnName)
@@ -143,7 +149,7 @@ def instrumental(name, gender):
 
 def lokativ(name, gender):
     """
-    O KOME? O ČEMU? U KOJOJ LOKACIJI? ABOUT WHO? ABOUT WHAT? IN WHAT LOCATION?
+    O KOME? O ČEMU? NA KOJOJ LOKACIJI? ABOUT WHO? ABOUT WHAT? IN WHAT LOCATION?
 
     Returns the locative form of the provided name. If a last name is present, it must be separated with a whitespace.
     
@@ -166,6 +172,194 @@ def lokativ(name, gender):
         returnName.append(changedName)
 
     return " ".join(returnName)
+
+def possesive(name,gender,object_gender,grammatical_number="singular"):
+    """
+    ČIJI? WHOSE?
+
+    Returns the possesive form of the provided name. Depends on the object_gender and grammatical_number parameters to add the appropriate suffix to the name.
+    
+    Parameters:
+    name: The name of the person that posseses something
+    gender: The gender of the person that posesses something, param value must be either "male" or "female"
+    object_gender: Can either be the gender of the object that the person posesses (value must be "male", "female" or "neutral") or the object itself, in which case the gender will be automatically detected provided that the grammatical_number param is correct
+    grammatical_number: The grammatical number of the object that the person posesses. Param value must be either "singular" or "plural". Default: singular
+    """
+    utils.checkPosessive(name,gender,grammatical_number)
+    object_gender = object_gender.strip().lower()
+
+    if object_gender not in ["male", "female", "neutral"]:
+        object_gender = utils.toCyrillic(object_gender)
+        if object_gender[-1] == "е":
+            if grammatical_number == "singular":
+                object_gender = "neutral"
+            else:
+                object_gender = "female"
+        elif object_gender[-1] == "а":
+            if object_gender in MALE_EXCEPTIONS:
+                object_gender = "male"
+            else:
+                object_gender = "female"
+        elif object_gender[-1] == "и" and grammatical_number == "plural":
+            test = object_gender[:-1]
+            if test in FEMALE_EXCEPTIONS:
+                object_gender = "female"
+            else:
+                object_gender = "male"
+        else:
+            if object_gender in FEMALE_EXCEPTIONS:
+                object_gender = "female"
+            else:
+                object_gender = "male"
+    
+    #name = name.strip()
+
+    lastChar = name[-1]
+    if lastChar.isupper():
+        if utils.isLatin(lastChar) == True:
+            suffix = utils.toLatin(POSSESIVE_SUFFIXES[object_gender+"_"+grammatical_number]).upper()
+        else:
+            suffix = POSSESIVE_SUFFIXES[object_gender+"_"+grammatical_number].upper()
+    else:
+        if utils.isLatin(lastChar) == True:
+            suffix = utils.toLatin(POSSESIVE_SUFFIXES[object_gender+"_"+grammatical_number])
+        else:
+            suffix = POSSESIVE_SUFFIXES[object_gender+"_"+grammatical_number]
+    return __possesive(name,gender)+suffix
+
+def posessiveAll(name,gender):
+    """
+    Creates all possible posessive forms (male, female and neutral in plural and singular) of the provided name and returns a dictionary where the keys are in the "GENDER_NUMBER" format.
+
+    Parameters:
+    name: The name that should be transformed
+    gender: The gender of the person, param value must be either "male" or "female"
+    """
+    utils.check(name, gender)
+    name = name.strip()
+    
+    return {"name":name,"male_singular":possesive(name,gender,"male","singular"),"male_plural":possesive(name,gender,"male","plural"),"female_singular":possesive(name,gender,"female","singular"),"female_plural":possesive(name,gender,"female","plural"),"neutral_singular":possesive(name,gender,"neutral","singular"),"neutral_plural":possesive(name,gender,"neutral","plural")}
+
+def __possesive(name,gender):
+    utils.check(name, gender)
+    name = utils.separateLetters(__genitiv(name.strip(),gender))
+    lastChar = name[-1]
+    secToLastChar = name[-2]
+    lastThree = name[-3]+name[-2]+name[-1]
+    lastTwo = name[-2]+name[-1]
+
+    if gender.lower() == "female" and utils.toCyrillic(name[-1].lower()) not in ['е','e']:
+        if lastChar.isupper():
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "IJIN"
+                    return "".join(name)
+
+                name.append("IN")
+                return "".join(name)
+            else:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ИЈИН"
+                    return "".join(name)
+                
+                name.append("ИН")
+                return "".join(name)
+        else:
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ijin"
+                    return "".join(name)
+                if lastThree.lower() == 'ice':
+                    name[-2] = "č"
+
+                name.append("in")
+                return "".join(name)
+            else:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ијин"
+                    return "".join(name)
+
+                name.append("ин")
+                return "".join(name)
+            
+    if name[-1].lower() in ['е','e']:
+        if lastChar.isupper():
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "IJIN"
+                    return "".join(name)
+                elif lastThree.lower() == 'ice':
+                    name[-2] = "Č"
+
+                name[-1] = "IN"
+                return "".join(name)
+            else:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ИЈИН"
+                    return "".join(name)
+                elif lastThree.lower() == 'ице':
+                    name[-2] = "Ч"
+                
+                name[-1] = "ИН"
+                return "".join(name)
+        else:
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ijin"
+                    return "".join(name)
+                if lastThree.lower() == 'ice':
+                    name[-2] = "č"
+
+                name[-1] = "in"
+                return "".join(name)
+            else:
+                if utils.toCyrillic(lastChar.lower()) in ['и','i']:
+                    name[-1] = "ијин"
+                    return "".join(name)
+                elif lastThree.lower() == 'ице':
+                    name[-2] = "ч"
+
+                name[-1] = "ин"
+                return "".join(name)
+    
+    if name[-1].lower() in ['а','a','г','g']:
+        if lastChar.isupper():
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(secToLastChar.lower()) in ZADNJONEPCANI:
+                    name[-1] = "EV"
+                    return "".join(name)
+                if utils.toCyrillic(lastTwo.lower()) == "ог":
+                    name = name[:-1]
+
+                name[-1] = "OV"
+                return "".join(name)
+            else:
+                if utils.toCyrillic(secToLastChar.lower()) in ZADNJONEPCANI:
+                    name[-1] = "ЕВ"
+                    return "".join(name)
+                
+                name[-1] = "ОВ"
+                return "".join(name)
+        else:
+            if utils.isLatin(lastChar) == True:
+                if utils.toCyrillic(secToLastChar.lower()) in ZADNJONEPCANI:
+                    name[-1] = "ev"
+                    return "".join(name)
+                if utils.toCyrillic(lastTwo.lower()) == "ог":
+                    name = name[:-1]
+                
+                name[-1] = "ov"
+                return "".join(name)
+            else:
+                if utils.toCyrillic(secToLastChar.lower()) in ZADNJONEPCANI:
+                    name[-1] = "ев"
+                    return "".join(name)
+                if utils.toCyrillic(lastTwo.lower()) == "ог":
+                    name = name[:-1]
+                
+                name[-1] = "ов"
+                return "".join(name)
+    
 
 def __genitiv(name, gender):
     utils.check(name, gender)
@@ -402,7 +596,7 @@ def __akuzativ(name, gender):
 
     return "".join(name)
 
-def __vokativ(name, gender):
+def __vokativ(name, gender, last_name):
     utils.check(name, gender)
     name = name.strip()
     nameGenitiv = list(genitiv(name, gender))
@@ -416,7 +610,7 @@ def __vokativ(name, gender):
     if name[-2].lower()+name[-1].lower() in ["ia", "иа"]:
         return "".join(name)
 
-    if utils.toCyrillic(name[-1].lower()) in ["к", "ц"] and (utils.toCyrillic((nameSep[-3]+nameSep[-2]+nameSep[-1]).lower()) in NEP_A or utils.toCyrillic(nameSep[-2]+nameSep[-1]).lower() in NEP_A):
+    if utils.toCyrillic(name[-1].lower()) in ["к", "ц"] and (utils.toCyrillic((nameSep[-3]+nameSep[-2]+nameSep[-1]).lower()) in NEP_A or utils.toCyrillic(nameSep[-2]+nameSep[-1]).lower() in NEP_A or last_name == True):
         if nameGenitiv[-1].islower():
             if utils.isLatin(nameGenitiv[-1]) == True:
                 nameGenitiv[-1] = "u"
@@ -459,7 +653,7 @@ def __vokativ(name, gender):
 
             return "".join(nameGenitiv)
 
-    if utils.toCyrillic(name[-1].lower()) in INSTRUMENTAL_LETTERS:
+    if utils.toCyrillic(name[-1].lower()) in ZADNJONEPCANI:
         if nameGenitiv[-1].islower():
             if utils.isLatin(nameGenitiv[-1]) == True:
                 nameGenitiv[-1] = "u"
@@ -566,7 +760,7 @@ def __instrumental(name, gender):
                 name[-1] = "им"
         return "".join(name)
 
-    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in INSTRUMENTAL_LETTERS and name[-1].lower() not in ["а", "a"]:
+    if gender.lower() == "male" and utils.toCyrillic(nameGenitiv)[-1].lower() in ZADNJONEPCANI and name[-1].lower() not in ["а", "a"]:
         if lastChar.isupper():
             if utils.isLatin(lastChar):
                 nameGenitiv.append("EM")

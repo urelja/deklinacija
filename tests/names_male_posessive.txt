@@ -1,0 +1,26 @@
+{'name': 'Predrag', 'male_singular': 'Predragov', 'male_plural': 'Predragovi', 'female_singular': 'Predragova', 'female_plural': 'Predragove', 'neutral_singular': 'Predragovo', 'neutral_plural': 'Predragova'}
+{'name': 'Minja', 'male_singular': 'Minjin', 'male_plural': 'Minjini', 'female_singular': 'Minjina', 'female_plural': 'Minjine', 'neutral_singular': 'Minjino', 'neutral_plural': 'Minjina'}
+{'name': 'Relja', 'male_singular': 'Reljin', 'male_plural': 'Reljini', 'female_singular': 'Reljina', 'female_plural': 'Reljine', 'neutral_singular': 'Reljino', 'neutral_plural': 'Reljina'}
+{'name': 'Uroš', 'male_singular': 'Urošev', 'male_plural': 'Uroševi', 'female_singular': 'Uroševa', 'female_plural': 'Uroševe', 'neutral_singular': 'Uroševo', 'neutral_plural': 'Uroševa'}
+{'name': 'Petrović', 'male_singular': 'Petrovićev', 'male_plural': 'Petrovićevi', 'female_singular': 'Petrovićeva', 'female_plural': 'Petrovićeve', 'neutral_singular': 'Petrovićevo', 'neutral_plural': 'Petrovićeva'}
+{'name': 'Petar', 'male_singular': 'Petrov', 'male_plural': 'Petrovi', 'female_singular': 'Petrova', 'female_plural': 'Petrove', 'neutral_singular': 'Petrovo', 'neutral_plural': 'Petrova'}
+{'name': 'Mačak', 'male_singular': 'Mačkov', 'male_plural': 'Mačkovi', 'female_singular': 'Mačkova', 'female_plural': 'Mačkove', 'neutral_singular': 'Mačkovo', 'neutral_plural': 'Mačkova'}
+{'name': 'Božidar', 'male_singular': 'Božidarov', 'male_plural': 'Božidarovi', 'female_singular': 'Božidarova', 'female_plural': 'Božidarove', 'neutral_singular': 'Božidarovo', 'neutral_plural': 'Božidarova'}
+{'name': 'Đurađ', 'male_singular': 'Đurđev', 'male_plural': 'Đurđevi', 'female_singular': 'Đurđeva', 'female_plural': 'Đurđeve', 'neutral_singular': 'Đurđevo', 'neutral_plural': 'Đurđeva'}
+{'name': 'Djuradj', 'male_singular': 'Djurdjev', 'male_plural': 'Djurdjevi', 'female_singular': 'Djurdjeva', 'female_plural': 'Djurdjeve', 'neutral_singular': 'Djurdjevo', 'neutral_plural': 'Djurdjeva'}
+{'name': 'Miki', 'male_singular': 'Mikijev', 'male_plural': 'Mikijevi', 'female_singular': 'Mikijeva', 'female_plural': 'Mikijeve', 'neutral_singular': 'Mikijevo', 'neutral_plural': 'Mikijeva'}
+{'name': 'Dario', 'male_singular': 'Darijev', 'male_plural': 'Darijevi', 'female_singular': 'Darijeva', 'female_plural': 'Darijeve', 'neutral_singular': 'Darijevo', 'neutral_plural': 'Darijeva'}
+{'name': 'Čuperak', 'male_singular': 'Čuperkov', 'male_plural': 'Čuperkovi', 'female_singular': 'Čuperkova', 'female_plural': 'Čuperkove', 'neutral_singular': 'Čuperkovo', 'neutral_plural': 'Čuperkova'}
+{'name': 'Đorđe', 'male_singular': 'Đorđev', 'male_plural': 'Đorđevi', 'female_singular': 'Đorđeva', 'female_plural': 'Đorđeve', 'neutral_singular': 'Đorđevo', 'neutral_plural': 'Đorđeva'}
+{'name': 'Djordje', 'male_singular': 'Djordjev', 'male_plural': 'Djordjevi', 'female_singular': 'Djordjeva', 'female_plural': 'Djordjeve', 'neutral_singular': 'Djordjevo', 'neutral_plural': 'Djordjeva'}
+{'name': 'Pablo', 'male_singular': 'Pablov', 'male_plural': 'Pablovi', 'female_singular': 'Pablova', 'female_plural': 'Pablove', 'neutral_singular': 'Pablovo', 'neutral_plural': 'Pablova'}
+{'name': 'Juraj', 'male_singular': 'Jurjev', 'male_plural': 'Jurjevi', 'female_singular': 'Jurjeva', 'female_plural': 'Jurjeve', 'neutral_singular': 'Jurjevo', 'neutral_plural': 'Jurjeva'}
+{'name': 'Aleksandar', 'male_singular': 'Aleksandrov', 'male_plural': 'Aleksandrovi', 'female_singular': 'Aleksandrova', 'female_plural': 'Aleksandrove', 'neutral_singular': 'Aleksandrovo', 'neutral_plural': 'Aleksandrova'}
+{'name': 'Opanak', 'male_singular': 'Opankov', 'male_plural': 'Opankovi', 'female_singular': 'Opankova', 'female_plural': 'Opankove', 'neutral_singular': 'Opankovo', 'neutral_plural': 'Opankova'}
+{'name': 'Vlah', 'male_singular': 'Vlahov', 'male_plural': 'Vlahovi', 'female_singular': 'Vlahova', 'female_plural': 'Vlahove', 'neutral_singular': 'Vlahovo', 'neutral_plural': 'Vlahova'}
+{'name': 'Subotički', 'male_singular': 'Subotičkov', 'male_plural': 'Subotičkovi', 'female_singular': 'Subotičkova', 'female_plural': 'Subotičkove', 'neutral_singular': 'Subotičkovo', 'neutral_plural': 'Subotičkova'}
+{'name': 'Niški', 'male_singular': 'Niškov', 'male_plural': 'Niškovi', 'female_singular': 'Niškova', 'female_plural': 'Niškove', 'neutral_singular': 'Niškovo', 'neutral_plural': 'Niškova'}
+{'name': 'Srpski', 'male_singular': 'Srpskov', 'male_plural': 'Srpskovi', 'female_singular': 'Srpskova', 'female_plural': 'Srpskove', 'neutral_singular': 'Srpskovo', 'neutral_plural': 'Srpskova'}
+{'name': 'Dario Subotički', 'male_singular': 'Dario Subotičkov', 'male_plural': 'Dario Subotičkovi', 'female_singular': 'Dario Subotičkova', 'female_plural': 'Dario Subotičkove', 'neutral_singular': 'Dario Subotičkovo', 'neutral_plural': 'Dario Subotičkova'}
+{'name': 'Minja Niški', 'male_singular': 'Minja Niškov', 'male_plural': 'Minja Niškovi', 'female_singular': 'Minja Niškova', 'female_plural': 'Minja Niškove', 'neutral_singular': 'Minja Niškovo', 'neutral_plural': 'Minja Niškova'}
+{'name': 'Miki Srpski', 'male_singular': 'Miki Srpskov', 'male_plural': 'Miki Srpskovi', 'female_singular': 'Miki Srpskova', 'female_plural': 'Miki Srpskove', 'neutral_singular': 'Miki Srpskovo', 'neutral_plural': 'Miki Srpskova'}

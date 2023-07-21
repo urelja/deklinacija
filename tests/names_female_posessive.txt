@@ -1,0 +1,15 @@
+{'name': 'Jana', 'male_singular': 'Janin', 'male_plural': 'Janini', 'female_singular': 'Janina', 'female_plural': 'Janine', 'neutral_singular': 'Janino', 'neutral_plural': 'Janina'}
+{'name': 'Milica', 'male_singular': 'Miličin', 'male_plural': 'Miličini', 'female_singular': 'Miličina', 'female_plural': 'Miličine', 'neutral_singular': 'Miličino', 'neutral_plural': 'Miličina'}
+{'name': 'Mia', 'male_singular': 'Mijin', 'male_plural': 'Mijini', 'female_singular': 'Mijina', 'female_plural': 'Mijine', 'neutral_singular': 'Mijino', 'neutral_plural': 'Mijina'}
+{'name': 'Ines', 'male_singular': 'Inesin', 'male_plural': 'Inesini', 'female_singular': 'Inesina', 'female_plural': 'Inesine', 'neutral_singular': 'Inesino', 'neutral_plural': 'Inesina'}
+{'name': 'Tea', 'male_singular': 'Tein', 'male_plural': 'Teini', 'female_singular': 'Teina', 'female_plural': 'Teine', 'neutral_singular': 'Teino', 'neutral_plural': 'Teina'}
+{'name': 'Ina', 'male_singular': 'Inin', 'male_plural': 'Inini', 'female_singular': 'Inina', 'female_plural': 'Inine', 'neutral_singular': 'Inino', 'neutral_plural': 'Inina'}
+{'name': 'Petrović', 'male_singular': 'Petrovićin', 'male_plural': 'Petrovićini', 'female_singular': 'Petrovićina', 'female_plural': 'Petrovićine', 'neutral_singular': 'Petrovićino', 'neutral_plural': 'Petrovićina'}
+{'name': 'Daria', 'male_singular': 'Darijin', 'male_plural': 'Darijini', 'female_singular': 'Darijina', 'female_plural': 'Darijine', 'neutral_singular': 'Darijino', 'neutral_plural': 'Darijina'}
+{'name': 'Anžujska', 'male_singular': 'Anžujskin', 'male_plural': 'Anžujskini', 'female_singular': 'Anžujskina', 'female_plural': 'Anžujskine', 'neutral_singular': 'Anžujskino', 'neutral_plural': 'Anžujskina'}
+{'name': 'Subotički', 'male_singular': 'Subotičkijin', 'male_plural': 'Subotičkijini', 'female_singular': 'Subotičkijina', 'female_plural': 'Subotičkijine', 'neutral_singular': 'Subotičkijino', 'neutral_plural': 'Subotičkijina'}
+{'name': 'Petka', 'male_singular': 'Petkin', 'male_plural': 'Petkini', 'female_singular': 'Petkina', 'female_plural': 'Petkine', 'neutral_singular': 'Petkino', 'neutral_plural': 'Petkina'}
+{'name': 'Lana Petrović', 'male_singular': 'Lana Petrovićin', 'male_plural': 'Lana Petrovićini', 'female_singular': 'Lana Petrovićina', 'female_plural': 'Lana Petrovićine', 'neutral_singular': 'Lana Petrovićino', 'neutral_plural': 'Lana Petrovićina'}
+{'name': 'Sandra Anžujska', 'male_singular': 'Sandra Anžujskin', 'male_plural': 'Sandra Anžujskini', 'female_singular': 'Sandra Anžujskina', 'female_plural': 'Sandra Anžujskine', 'neutral_singular': 'Sandra Anžujskino', 'neutral_plural': 'Sandra Anžujskina'}
+{'name': 'Milica Tabova', 'male_singular': 'Milica Tabovin', 'male_plural': 'Milica Tabovini', 'female_singular': 'Milica Tabovina', 'female_plural': 'Milica Tabovine', 'neutral_singular': 'Milica Tabovino', 'neutral_plural': 'Milica Tabovina'}
+{'name': 'Milica Releva', 'male_singular': 'Milica Relevin', 'male_plural': 'Milica Relevini', 'female_singular': 'Milica Relevina', 'female_plural': 'Milica Relevine', 'neutral_singular': 'Milica Relevino', 'neutral_plural': 'Milica Relevina'}

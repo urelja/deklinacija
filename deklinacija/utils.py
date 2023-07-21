@@ -102,11 +102,10 @@ def toLatin(word):
 
 
 def check(name, gender):
-    if type(name) != str or type(name) != str or type(gender) != str:
+    if type(name) != str or type(gender) != str:
         raise TypeError(
-            "name and gender params must be a string, param latin must be a boolean")
+            "name and gender params must be a string")
 
-    gender = gender.strip()
     name = name.strip()
 
     if gender.lower() not in ["male", "female"]:
@@ -116,6 +115,20 @@ def check(name, gender):
         raise ValueError("name param must be at least 3 characters long")
 
 
+def checkPosessive(name,gender,grammatical_number):
+    if type(name) != str or type(gender) != str or type(grammatical_number) != str:
+        raise TypeError(
+            "all params must be strings")
+    
+    if gender.lower() not in ["male", "female"]:
+        raise ValueError('gender param must be either "male" or "female"')
+    
+    if grammatical_number.lower() not in ["singular", "plural"]:
+        raise ValueError('grammatical_number param must be either "singular" or "plural"')
+
+    if len(name) < 3:
+        raise ValueError("name param must be at least 3 characters long")
+    
 def separateLetters(word):
     word = list(word)
     wordText = "".join(word)

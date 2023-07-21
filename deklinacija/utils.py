@@ -17,6 +17,9 @@ latExceptions = []
 
 
 def isLatin(word):
+    """
+    Returns a boolean indicating whether the last character of the input string is in the Latin script. Raises an error if the character isn't neither in Latin or Cyrillic.
+    """
     if word[-1].lower() in alphabet:
         return True
     elif word[-1].lower() in alphabet_latin:
@@ -26,7 +29,9 @@ def isLatin(word):
 
 
 def toCyrillic(word):
-
+    """
+    Converts input string into Cyrillic. Works with Serbian Latin letter pairs (lj, nj, dž, etc.)
+    """
     wordArray = []
     word = list(word)
     wordText = "".join(word)
@@ -80,6 +85,9 @@ def toCyrillic(word):
 
 
 def toLatin(word):
+    """
+    Converts input string into Cyrillic. Works with Serbian Latin letter pairs (lj, nj, dž etc.)
+    """
     word = list(word)
 
     n = 0
@@ -128,8 +136,12 @@ def checkPosessive(name,gender,grammatical_number):
 
     if len(name) < 3:
         raise ValueError("name param must be at least 3 characters long")
-    
+
+
 def separateLetters(word):
+    """
+    Separates letters from word, while making sure that certain letter pairs in Serbian Latin (lj, nj, dž etc.) stay together. Returns a list.
+    """
     word = list(word)
     wordText = "".join(word)
     wordArray = []

@@ -1,5 +1,16 @@
 import csv
 import os
+from enum import Enum
+
+class Gender(Enum):
+    MALE = "male"
+    FEMALE = "female"
+    NEUTRAL = "neutral"
+
+class Number(Enum):
+    SINGULAR = "singular"
+    PLURAL = "plural"
+
 
 alphabet = {
     'a': 'а', 'b': 'б', 'c': 'ц', 'č': 'ч', 'ć': 'ћ', 'd': 'д', 'đ': 'ђ', 'dj': 'ђ', 'e': 'е', 'f': 'ф', 'g': 'г',
@@ -12,6 +23,7 @@ alphabet_latin = {
     'п': 'p', 'р': 'r', 'с': 's', 'ш': 'š', 'т': 't', 'у': 'u', 'в': 'v', 'з': 'z', 'ж': 'ž', 'џ': 'dž'}
 
 ZVUCNI = ["б", "д", "г", "ђ", "ж", "з", "џ"]
+
 
 latExceptions = []
 
@@ -110,29 +122,31 @@ def toLatin(word):
 
 
 def check(name, gender):
-    if type(name) != str or type(gender) != str:
+    if type(name) != str:
         raise TypeError(
-            "name and gender params must be a string")
+            "name param must be a string")
+    
+    if gender not in [Gender.MALE, Gender.FEMALE]:
+        raise TypeError(
+            "gender param must be Gender.MALE or Gender.FEMALE")
 
     name = name.strip()
-
-    if gender.lower() not in ["male", "female"]:
-        raise ValueError('gender param must be either "male" or "female"')
 
     if len(name) < 3:
         raise ValueError("name param must be at least 3 characters long")
 
 
-def checkPosessive(name,gender,grammatical_number):
-    if type(name) != str or type(gender) != str or type(grammatical_number) != str:
+def checkPosessive(name,gender,object_gender,grammatical_number):
+    if type(name) != str:
         raise TypeError(
-            "all params must be strings")
+            "name param must be string")
+    if gender not in [Gender.MALE, Gender.FEMALE]:
+        raise TypeError(
+            "gender params must be Gender.MALE or Gender.FEMALE")
     
-    if gender.lower() not in ["male", "female"]:
-        raise ValueError('gender param must be either "male" or "female"')
-    
-    if grammatical_number.lower() not in ["singular", "plural"]:
-        raise ValueError('grammatical_number param must be either "singular" or "plural"')
+    if grammatical_number not in [Number.SINGULAR, Number.PLURAL]:
+        raise TypeError(
+            "number param must be Number.SINGULAR or Number.PLURAL")
 
     if len(name) < 3:
         raise ValueError("name param must be at least 3 characters long")
@@ -174,6 +188,41 @@ def isZvucni(letter):
     else:
         return False
 
+def addSuffix(name,gender,suffix,append,addJ):
+    lastChar = name[-1]
+    secToLastChar = name[-2]
+
+    if append == False:
+        if lastChar.isupper():
+            if isLatin(lastChar) == True:
+                if secToLastChar.lower() in ["и", "i"] and addJ == True:
+                    name.insert(-1, "J")
+                name[-1] = toLatin(suffix.upper())
+            else:
+                if secToLastChar.lower() in ["и", "i"] and addJ == True:
+                    name.insert(-1, "Ј")
+                name[-1] = toCyrillic(suffix.upper())
+        else:
+            if isLatin(lastChar) == True:
+                if secToLastChar.lower() in ["и", "i"] and addJ == True:
+                    name.insert(-1, "j")
+                name[-1] = toLatin(suffix.lower())
+            else:
+                if secToLastChar.lower() in ["и", "i"] and addJ == True:
+                    name.insert(-1, "ј")
+                name[-1] = toCyrillic(suffix.lower())
+    elif append == True:
+        if lastChar.isupper():
+                if isLatin(lastChar) == True:
+                    name.append(toLatin(suffix.upper()))
+                else:
+                    name.append(toCyrillic(suffix.upper()))
+        else:
+            if isLatin(lastChar) == True:
+                name.append(toLatin(suffix.lower()))
+            else:
+                name.append(toCyrillic(suffix.lower()))
+    return "".join(name)
 #Excel formula for filtering names shorter or equal to 5 characters and ending in cyrillic "а"
 #(assumes that names start from the second row): 
 # =FILTER(A2:B1970;(LEN(A2:A1970)<=5)*(RIGHT(A2:A1970)="а"))

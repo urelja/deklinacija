@@ -30,7 +30,7 @@ def testMaleNames():
     for i in read_content_male:
         nameDict = ast.literal_eval(read_content_male[n].strip())
         name = nameDict['nominativ']
-        compare = dek.declineAll(name,"male")
+        compare = dek.declineAll(name,dek.Gender.MALE)
         assert compare == nameDict
         n += 1
 
@@ -39,7 +39,7 @@ def testFemaleNames():
     for i in read_content_female:
         nameDict = ast.literal_eval(read_content_female[n].strip())
         name = nameDict['nominativ']
-        compare = dek.declineAll(name,"female")
+        compare = dek.declineAll(name,dek.Gender.FEMALE)
         assert compare == nameDict
         n += 1
 
@@ -48,7 +48,7 @@ def testPosessiveMaleNames():
     for i in read_content_male_p:
         nameDict = ast.literal_eval(read_content_male_p[n].strip())
         name = nameDict['name']
-        compare = dek.posessiveAll(name,"male")
+        compare = dek.posessiveAll(name,dek.Gender.MALE)
         assert compare == nameDict
         n += 1
 
@@ -57,6 +57,6 @@ def testPosessiveFemaleNames():
     for i in read_content_female_p:
         nameDict = ast.literal_eval(read_content_female_p[n].strip())
         name = nameDict['name']
-        compare = dek.posessiveAll(name,"female")
+        compare = dek.posessiveAll(name,dek.Gender.FEMALE)
         assert compare == nameDict
         n += 1

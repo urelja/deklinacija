@@ -1,0 +1,15 @@
+name: Pytest
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: Pytest
+        uses: microsoft/action-python@0.7.0
+        with:          
+          testing: true

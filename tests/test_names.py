@@ -10,8 +10,8 @@ module_path = os.path.abspath(__file__)
 module_directory = os.path.dirname(module_path)
 file_path_male = os.path.join(module_directory, 'names_male.txt')
 file_path_female = os.path.join(module_directory, 'names_female.txt')
-file_path_male_p = os.path.join(module_directory, 'names_male_posessive.txt')
-file_path_female_p = os.path.join(module_directory, 'names_female_posessive.txt')
+file_path_male_p = os.path.join(module_directory, 'names_male_possessive.txt')
+file_path_female_p = os.path.join(module_directory, 'names_female_possessive.txt')
 
 with open(file_path_male, "r", encoding="utf-8") as fileM:
     read_content_male = fileM.readlines()
@@ -43,20 +43,20 @@ def testFemaleNames():
         assert compare == nameDict
         n += 1
 
-def testPosessiveMaleNames():
+def testPossessiveMaleNames():
     n = 0
     for i in read_content_male_p:
         nameDict = ast.literal_eval(read_content_male_p[n].strip())
         name = nameDict['name']
-        compare = dek.posessiveAll(name,dek.Gender.MALE)
+        compare = dek.possessiveAll(name,dek.Gender.MALE)
         assert compare == nameDict
         n += 1
 
-def testPosessiveFemaleNames():
+def testPossessiveFemaleNames():
     n = 0
     for i in read_content_female_p:
         nameDict = ast.literal_eval(read_content_female_p[n].strip())
         name = nameDict['name']
-        compare = dek.posessiveAll(name,dek.Gender.FEMALE)
+        compare = dek.possessiveAll(name,dek.Gender.FEMALE)
         assert compare == nameDict
         n += 1

@@ -136,7 +136,7 @@ def check(name, gender):
         raise ValueError("name param must be at least 3 characters long")
 
 
-def checkPosessive(name,gender,object_gender,grammatical_number):
+def checkPossessive(name,gender,object_gender,grammatical_number):
     if type(name) != str:
         raise TypeError(
             "name param must be string")

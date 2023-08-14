@@ -183,19 +183,19 @@ def lokativ(name, gender):
 
     return " ".join(returnName)
 
-def possesive(name,gender,object_gender,grammatical_number=Number.SINGULAR):
+def possessive(name,gender,object_gender,grammatical_number=Number.SINGULAR):
     """
     ČIJI? WHOSE?
 
-    Returns the possesive form of the provided name. Depends on the object_gender and grammatical_number parameters to add the appropriate suffix to the name.
+    Returns the possessive form of the provided name. Depends on the object_gender and grammatical_number parameters to add the appropriate suffix to the name.
     
     Parameters:
     name: The name of the person that posseses something
-    gender: The gender of the person that posesses something, param value must be either Gender.MALE or Gender.FEMALE
-    object_gender: Can either be the gender of the object that the person posesses (value must be Gender.MALE, Gender.FEMALE or Gender.NEUTRAL) or the object itself, in which case the gender will be automatically detected provided that the grammatical_number param is correct
-    grammatical_number: The grammatical number of the object that the person posesses. Param value must be either Number.SINGULAR or Number.PLURAL. Default: singular
+    gender: The gender of the person that possesses something, param value must be either Gender.MALE or Gender.FEMALE
+    object_gender: Can either be the gender of the object that the person possesses (value must be Gender.MALE, Gender.FEMALE or Gender.NEUTRAL) or the object itself, in which case the gender will be automatically detected provided that the grammatical_number param is correct
+    grammatical_number: The grammatical number of the object that the person possesses. Param value must be either Number.SINGULAR or Number.PLURAL. Default: singular
     """
-    utils.checkPosessive(name,gender,object_gender,grammatical_number,)
+    utils.checkPossessive(name,gender,object_gender,grammatical_number,)
 
 
     if type(object_gender) == str:
@@ -238,11 +238,11 @@ def possesive(name,gender,object_gender,grammatical_number=Number.SINGULAR):
             suffix = utils.toLatin(POSSESIVE_SUFFIXES[gender_text+"_"+number_text])
         else:
             suffix = POSSESIVE_SUFFIXES[gender_text+"_"+number_text]
-    return __possesive(name,gender)+suffix
+    return __possessive(name,gender)+suffix
 
-def posessiveAll(name,gender):
+def possessiveAll(name,gender):
     """
-    Creates all possible posessive forms (male, female and neutral in plural and singular) of the provided name and returns a dictionary where the keys are in the "GENDER_NUMBER" format.
+    Creates all possible possessive forms (male, female and neutral in plural and singular) of the provided name and returns a dictionary where the keys are in the "GENDER_NUMBER" format.
 
     Parameters:
     name: The name that should be transformed
@@ -251,9 +251,9 @@ def posessiveAll(name,gender):
     utils.check(name, gender)
     name = name.strip()
     
-    return {"name":name,"male_singular":possesive(name,gender,Gender.MALE,Number.SINGULAR),"male_plural":possesive(name,gender,Gender.MALE,Number.PLURAL),"female_singular":possesive(name,gender,Gender.FEMALE,Number.SINGULAR),"female_plural":possesive(name,gender,Gender.FEMALE,Number.PLURAL),"neutral_singular":possesive(name,gender,Gender.NEUTRAL,Number.SINGULAR),"neutral_plural":possesive(name,gender,Gender.NEUTRAL,Number.PLURAL)}
+    return {"name":name,"male_singular":possessive(name,gender,Gender.MALE,Number.SINGULAR),"male_plural":possessive(name,gender,Gender.MALE,Number.PLURAL),"female_singular":possessive(name,gender,Gender.FEMALE,Number.SINGULAR),"female_plural":possessive(name,gender,Gender.FEMALE,Number.PLURAL),"neutral_singular":possessive(name,gender,Gender.NEUTRAL,Number.SINGULAR),"neutral_plural":possessive(name,gender,Gender.NEUTRAL,Number.PLURAL)}
 
-def __possesive(name,gender):
+def __possessive(name,gender):
     utils.check(name, gender)
     name = utils.separateLetters(__genitiv(name.strip(),gender))
     lastChar = name[-1]
@@ -382,7 +382,7 @@ def __possesive(name,gender):
                 return "".join(name)
     
 def __genitiv(name, gender):
-    #utils.check(name, gender)
+    utils.check(name, gender)
     name = utils.separateLetters(name.strip())
 
     lastChar = name[-1]
@@ -579,7 +579,7 @@ def declineAll(name, gender):
     name: The name that should be declined
     gender: The gender of the person, param value must be either Gender.MALE or Gender.FEMALE
     """
-    #utils.check(name, gender)
+    utils.check(name, gender)
     name = name.strip()
 
     allDek = {"nominativ": name, "genitiv": genitiv(name, gender), "dativ": dativ(name, gender), "akuzativ": akuzativ(

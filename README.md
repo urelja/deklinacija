@@ -30,7 +30,7 @@ dativ = dek.dativ("Petar Petrović",Gender.MALE) #Petru Petroviću
 vokativ = dek.vokativ("Predrag",Gender.MALE) #Predraže
 vokativ2 = dek.vokativ("STEFAN JANKOVIĆ",Gender.MALE) #STEFANE JANKOVIĆU
 instrumental = dek.instrumental("Uroš",Gender.MALE) #Urošem
-lokativ = dek.lokativ("Beograd",Gender.FEMALE) #Beogradu
+lokativ = dek.lokativ("Beograd",Gender.MALE) #Beogradu
 
 print(f"Zdravo, {vokativ}! Dobio si zahtev za prijateljstvo od {genitiv}.") 
 #Zdravo Predraže! Dobio si zahtev za prijateljstvo od Velje. // Translation: Hello Predrag! You have received a friend request from Velja.
